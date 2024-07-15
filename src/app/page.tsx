@@ -29,7 +29,7 @@ export default function Home() {
 					Patientrest allow you to set your appointment from your House!
 				</p>
 				<Link
-					href="/"
+					href="/auth/sign-in"
 					className={buttonVariants({
 						size: "lg",
 						className: "mt-6 flex gap-2 items-center justify-between",

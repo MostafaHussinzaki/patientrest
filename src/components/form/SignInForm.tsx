@@ -40,7 +40,7 @@ const SignInForm = () => {
 					`${signInResponse.error}: Email is used, but the phone and / or name isn't the same`
 				);
 			} else {
-				router.push("/sign-up");
+				router.push("/auth/register");
 			}
 		} else if (signInResponse?.status === 200) {
 			router.push("/set-appoinmtet");
@@ -80,6 +80,8 @@ const SignInForm = () => {
 					placeholder="0123456789"
 				/>
 			</InputField>
+
+			{error && <p className="text-[12px] text-red-400 mt-2">{error}</p>}
 
 			<Button type="submit" disabled={isSubmitting}>
 				{isSubmitting ? "Redirecting..." : "submit"}

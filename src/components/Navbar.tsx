@@ -16,7 +16,7 @@ const Navbar = () => {
 					<nav>
 						{/*TODO: Conditional get started or log out */}
 						<Link
-							href=""
+							href="/auth/sign-in"
 							className={buttonVariants({
 								size: "sm",
 								className: "flex gap-2 text-[0.775rem] md:text-sm",

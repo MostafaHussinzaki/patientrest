@@ -23,24 +23,23 @@ export const authOptions: AuthOptions = {
 						email: credentials?.email,
 					},
 				});
-				
-
 				if (dbUser) {
 					// check if the user enter correct data or not
 					if (
-						dbUser.phone === credentials?.phone ||
-						dbUser.name === credentials?.name
+						dbUser.phone !== credentials?.phone ||
+						dbUser.name !== credentials?.name
 					) {
 						throw new Error("Incorrect data");
+					} else {
+						const user = {
+							id: dbUser.id.toString(),
+							name: dbUser.name,
+							email: dbUser.email,
+						};
+						return user;
 					}
-					const user = {
-						id: dbUser.id.toString(),
-						name: dbUser.name,
-						email: dbUser.email,
-					};
-					return user;
 				} else {
-					// create new user in database		
+					// create new user in database
 					await db.patient.create({
 						data: {
 							email: credentials?.email,
