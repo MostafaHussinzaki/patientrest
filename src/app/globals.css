@@ -27,14 +27,14 @@
 	}
 
 	.dark {
-		--background: 210, 14%, 9%, 1;
-		--foreground: 0, 0%, 100%, 1;
+		--background: 20 14.3% 4.1%;
+		--foreground: 0 0% 95%;
 		--card: 24 9.8% 10%;
 		--card-foreground: 0 0% 95%;
 		--popover: 0 0% 9%;
 		--popover-foreground: 0 0% 95%;
-		--primary: 158, 66%, 41%, 1;
-		--primary-foreground: 144.9 80.4% 10%;
+		--primary: 142.1 70.6% 45.3%;
+		--primary-foreground: 0, 0%, 100%;
 		--secondary: 240 3.7% 15.9%;
 		--secondary-foreground: 0 0% 98%;
 		--muted: 0 0% 15%;
@@ -56,4 +56,11 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+
+.inputx:-webkit-autofill,
+.inputx:-webkit-autofill:hover,
+.inputx:-webkit-autofill:focus,
+.inputx:-webkit-autofill:active {
+	@apply flex h-10 w-full rounded-md border border-input bg-muted px-3 py-2 text-sm ring-offset-muted file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
 }

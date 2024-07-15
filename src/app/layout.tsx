@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Providers from "../components/Providers";
 
 const jakarta = Plus_Jakarta_Sans({
 	subsets: ["latin"],
@@ -21,14 +23,17 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={cn(
-					"min-g-screen dark font-[var(--font-sans)]",
-					jakarta.className
-				)}
-			>
-				{children}
-			</body>
+			<Providers>
+				<body
+					className={cn(
+						"min-g-screen dark font-[var(--font-sans)]",
+						jakarta.className
+					)}
+				>
+					<Navbar />
+					{children}
+				</body>
+			</Providers>
 		</html>
 	);
 }
