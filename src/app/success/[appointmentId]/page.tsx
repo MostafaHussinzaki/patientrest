@@ -1,6 +1,7 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { db } from "@/db";
 import { authOptions } from "@/lib/auth";
+import { dateFormatter } from "@/lib/utils";
 import { Check, Calendar } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
@@ -18,6 +19,8 @@ const page = async ({ params }: { params: { appointmentId: string } }) => {
 			patientId: +session?.user.id,
 		},
 	});
+
+	const formattedDate = dateFormatter(appointmentData?.Date);
 
 	if (!appointmentData) {
 		notFound();
@@ -43,11 +46,7 @@ const page = async ({ params }: { params: { appointmentId: string } }) => {
 					</span>
 					<span className="flex items-center">
 						<Calendar className="text-zinc-400 h-4 w-4 mr-2" />{" "}
-						<p className="text-zinc-400 text-sm">
-							{appointmentData?.Date.getFullYear()}/
-							{appointmentData?.Date.getMonth()}/
-							{appointmentData?.Date.getDay()}
-						</p>{" "}
+						<p className="text-zinc-400 text-sm">{formattedDate}</p>{" "}
 					</span>
 				</div>
 			</MaxWidthWrapper>

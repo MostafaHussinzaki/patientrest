@@ -4,6 +4,8 @@ import SignInForm from "@/components/form/SignInForm";
 import onBoardingImage from "@/assets/onboarding-img.png";
 import Image from "next/image";
 
+import { Button } from "@/components/ui/button";
+
 const page = () => {
 	return (
 		<main className="flex flex-col lg:flex-row mb-6 lg:mb-0 lg:h-[calc(100vh-3.5rem)]">
@@ -19,6 +21,7 @@ const page = () => {
 					</div>
 					<SignInForm />
 				</div>
+			<Button variant="link" className="self-end">Admin</Button>
 			</MaxWidthWrapper>
 			<div className="flex-1 lg:h-full rounded-md max-w-lg mx-auto my-10 lg:my-0 px-4 lg:px-0">
 				<Image

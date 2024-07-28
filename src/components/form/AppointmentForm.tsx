@@ -6,7 +6,10 @@ import { z } from "zod";
 import { createAppointmentSchema } from "@/lib/validation";
 
 import InputField from "../InputField";
-import { DatePicker } from "../DatePicker";
+import DatePicker from "react-datepicker";
+import { Calendar } from "lucide-react";
+
+import "react-datepicker/dist/react-datepicker.css";
 import SelectDoctor from "@/components/SelectDoctor";
 
 import { Form, FormControl, FormField } from "@/components/ui/form";
@@ -42,7 +45,7 @@ const AppointmentForm = ({ userId }: { userId: string }) => {
 					type: "manual",
 					message: "Something went wrong, try again later",
 				});
-				throw new Error('Something went wrong, try again later')
+				throw new Error("Something went wrong, try again later");
 			}
 
 			const resData = await res.json();
@@ -130,12 +133,25 @@ const AppointmentForm = ({ userId }: { userId: string }) => {
 								errors={fieldState.error}
 								className="flex flex-col flex-1"
 							>
-								<DatePicker
-									className="flex-1"
-									id="schedule"
-									field={field}
-									fromDate={new Date()}
-								/>
+								<div className="flex items-center px-4 rounded-md border border-zinc-500 bg-muted">
+									<Calendar className="h-5 w-5 text-400" />
+									<FormControl>
+										<DatePicker
+											showTimeSelect
+											selected={field.value}
+											onChange={field.onChange}
+											timeInputLabel="Time:"
+											dateFormat={"MM/dd/yyyy  -  h:mm aa"}
+											startDate={new Date()}
+											excludeDateIntervals={[
+												{ start: new Date(1406567149), end: new Date() },
+											]}
+											showDisabledMonthNavigation
+											placeholderText="Click to select a date"
+											wrapperClassName="date-picker"
+										/>
+									</FormControl>
+								</div>
 							</InputField>
 						);
 					}}
