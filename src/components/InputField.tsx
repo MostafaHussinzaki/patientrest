@@ -17,14 +17,14 @@ const InputField = ({
 	errors,
 }: InputFieldProps) => {
 	return (
-		<div>
+		<div className={className}>
 			<Label htmlFor={htmlFor} className="text-[#ABB8C4] text-sm mb-4">
 				{label}
 			</Label>
 			{children}
-			{errors[htmlFor] && (
+			{errors && (
 				<p className="text-[12px] text-red-400 mt-2">
-					{errors[htmlFor].message}
+					{errors.message}
 				</p>
 			)}
 		</div>

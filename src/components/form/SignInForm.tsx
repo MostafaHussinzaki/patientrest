@@ -30,20 +30,25 @@ const SignInForm = () => {
 	});
 
 	const onSubmit: SubmitHandler<FormField> = async (data) => {
+		const formatData = {
+			name: data.name.toLowerCase(),
+			email: data.email,
+			phone: data.phone,
+		};
 		const signInResponse = await signIn("credentials", {
-			...data,
+			...formatData,
 			redirect: false,
 		});
 		if (signInResponse?.status === 401) {
-			if (signInResponse.error === "Incorrect data") {
-				setError(
-					`${signInResponse.error}: Email is used, but the phone and / or name isn't the same`
-				);
+			if (signInResponse.error?.startsWith("Incorrect")) {
+				setError(`Email is already exist: ${signInResponse.error}`);
 			} else {
-				router.push("/auth/register");
+				router.push(
+					`/auth/register?name=${data.name}&email=${data.email}&phone=${data.phone}`
+				);
 			}
 		} else if (signInResponse?.status === 200) {
-			router.push("/set-appoinmtet");
+			router.push(`/auth-callback`);
 		} else {
 			// TODO: handle this error
 			throw new Error("Handled later");
@@ -52,7 +57,7 @@ const SignInForm = () => {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-			<InputField label="Full Name" htmlFor="name" errors={errors}>
+			<InputField label="Full Name" htmlFor="name" errors={errors.name}>
 				<Input
 					{...register("name")}
 					type="text"
@@ -62,7 +67,7 @@ const SignInForm = () => {
 				/>
 			</InputField>
 
-			<InputField label="Email Address" htmlFor="email" errors={errors}>
+			<InputField label="Email Address" htmlFor="email" errors={errors.email}>
 				<Input
 					{...register("email")}
 					type="email"
@@ -71,7 +76,7 @@ const SignInForm = () => {
 					placeholder="mohamed@gmail.com"
 				/>
 			</InputField>
-			<InputField label="Phone Number" htmlFor="phone" errors={errors}>
+			<InputField label="Phone Number" htmlFor="phone" errors={errors.phone}>
 				<Input
 					{...register("phone")}
 					type="text"

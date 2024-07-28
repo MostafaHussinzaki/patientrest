@@ -2,11 +2,15 @@
 import { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const Providers = ({ children }: {children: ReactNode}) => {
+import { SessionProvider } from "next-auth/react";
+
+const Providers = ({ children }: { children: ReactNode }) => {
 	const queryClient = new QueryClient();
 
 	return (
-		<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+		<SessionProvider>
+			<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+		</SessionProvider>
 	);
 };
 

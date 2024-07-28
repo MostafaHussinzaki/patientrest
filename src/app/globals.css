@@ -62,5 +62,38 @@
 .inputx:-webkit-autofill:hover,
 .inputx:-webkit-autofill:focus,
 .inputx:-webkit-autofill:active {
-	@apply flex h-10 w-full rounded-md border border-input bg-muted px-3 py-2 text-sm ring-offset-muted file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+	-webkit-box-shadow: 0 0 0 30px hsl(0 0% 15%) inset !important;
+	/* -webkit-background-clip: hsl(0 0% 15%); */
+	-webkit-text-fill-color: #ffffff;
+}
+
+.rdp-dropdown_year .rdp-dropdown {
+	@apply bg-transparent;
+}
+.rdp-dropdown_year .rdp-dropdown + div {
+	@apply hidden;
+}
+
+.rdp-dropdown_year .rdp-dropdown option {
+	@apply bg-input;
+}
+
+.rdp-dropdown_month .rdp-dropdown {
+	@apply bg-transparent;
+}
+
+.rdp-dropdown_month .rdp-dropdown + div {
+	@apply hidden;
+}
+
+.rdp-dropdown_month .rdp-dropdown option {
+	@apply bg-input;
+}
+
+.bg-gradiantt {
+	background: linear-gradient(
+		117.58deg,
+		rgba(215, 237, 237, 0.16) -47.79%,
+		rgba(204, 235, 235, 0) 100%
+	);
 }

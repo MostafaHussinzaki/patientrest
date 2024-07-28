@@ -31,4 +31,27 @@ model Patient {
   currentMedication String?
   familyMedicalHistory String?
   pastMedicalHistory String?
+  appointments Appointment[] 
+}
+
+enum Status {
+  PENDING
+  SCHEDULED
+  CANCELED
+}
+
+
+model Appointment {
+  appointmentId Int @id @default(autoincrement())
+  doctor String
+
+  patientId Int
+  patient    Patient    @relation(fields: [patientId], references: [id])
+
+  reason String
+  note String?
+
+  Date DateTime
+
+  status Status
 }

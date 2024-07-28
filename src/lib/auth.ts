@@ -17,41 +17,64 @@ export const authOptions: AuthOptions = {
 				},
 			},
 			async authorize(credentials, req) {
-				// get the user from database
-				const dbUser = await db.patient.findFirst({
-					where: {
-						email: credentials?.email,
-					},
-				});
-				if (dbUser) {
-					// check if the user enter correct data or not
-					if (
-						dbUser.phone !== credentials?.phone ||
-						dbUser.name !== credentials?.name
-					) {
-						throw new Error("Incorrect data");
-					} else {
-						const user = {
-							id: dbUser.id.toString(),
-							name: dbUser.name,
-							email: dbUser.email,
-						};
-						return user;
-					}
-				} else {
-					// create new user in database
-					await db.patient.create({
-						data: {
+				// TODO: changed when deployed
+				if (req?.headers?.referer === "http://localhost:3000/auth/sign-in") {
+					// get the user from database
+					const dbUser = await db.patient.findUnique({
+						where: {
 							email: credentials?.email,
-							name: credentials?.name,
-							phone: credentials?.phone,
 						},
 					});
-					return null;
+
+					if (!dbUser) return null;
+
+					// check if the user enter correct data or not
+					if (dbUser.phone !== credentials?.phone)
+						throw new Error("Incorrect Phone number");
+
+					if (dbUser.name !== credentials?.name)
+						throw new Error("Incorrect Name");
+
+					const user = {
+						id: dbUser.id.toString(),
+						name: dbUser.name,
+						email: dbUser.email,
+					};
+					return user;
+				} else {
+					const user = {
+						//@ts-ignore
+						id: credentials?.id.toString(),
+						name: credentials?.name,
+						email: credentials?.email,
+					};
+					return user;
 				}
 			},
 		}),
 	],
+	callbacks: {
+		async jwt({ token, user }) {
+			// Add custom properties to the token
+			if (user) {
+				return {
+					...token,
+					id: user.id,
+				};
+			}
+			return token;
+		},
+		async session({ session, token }) {
+			return {
+				...session,
+				user: {
+					...session.user,
+					id: token.id,
+				},
+			};
+		},
+	},
+	secret: process.env.NEXTAUTH_SECRET,
 	session: {
 		strategy: "jwt",
 	},

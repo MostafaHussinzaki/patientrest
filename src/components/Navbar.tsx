@@ -1,9 +1,9 @@
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
-import { buttonVariants } from "./ui/button";
-import { ArrowRight } from "lucide-react";
+import AuthButton from "./AuthButton";
 
-const Navbar = () => {
+const Navbar = async () => {
+
 	return (
 		<header className="sticky h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-800 bg-background/75 backdrop-blur-lg transition-all">
 			<MaxWidthWrapper className="h-full">
@@ -14,16 +14,7 @@ const Navbar = () => {
 						</h1>
 					</div>
 					<nav>
-						{/*TODO: Conditional get started or log out */}
-						<Link
-							href="/auth/sign-in"
-							className={buttonVariants({
-								size: "sm",
-								className: "flex gap-2 text-[0.775rem] md:text-sm",
-							})}
-						>
-							Get started <ArrowRight className="w-4 h-4" />
-						</Link>
+						<AuthButton />
 					</nav>
 				</div>
 			</MaxWidthWrapper>
