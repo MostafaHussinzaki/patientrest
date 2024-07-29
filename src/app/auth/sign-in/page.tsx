@@ -21,7 +21,12 @@ const page = () => {
 					</div>
 					<SignInForm />
 				</div>
-			<Button variant="link" className="self-end">Admin</Button>
+				<div className="flex items-center justify-between w-full mt-10">
+					<span className="text-zinc-400 text-sm">&#169;2024 patientrest</span>
+					<Button variant="link" className="self-end">
+						Admin
+					</Button>
+				</div>
 			</MaxWidthWrapper>
 			<div className="flex-1 lg:h-full rounded-md max-w-lg mx-auto my-10 lg:my-0 px-4 lg:px-0">
 				<Image

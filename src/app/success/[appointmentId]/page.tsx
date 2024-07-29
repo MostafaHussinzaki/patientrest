@@ -1,10 +1,19 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { db } from "@/db";
-import { authOptions } from "@/lib/auth";
+import { buttonVariants } from "@/components/ui/button";
+
+import { Calendar } from "lucide-react";
+
 import { dateFormatter } from "@/lib/utils";
-import { Check, Calendar } from "lucide-react";
+
+import { db } from "@/db";
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+
+import Image from "next/image";
+import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+
+import successGif from "@/assets/gifs/success.gif";
 
 const page = async ({ params }: { params: { appointmentId: string } }) => {
 	const session = await getServerSession(authOptions);
@@ -29,9 +38,7 @@ const page = async ({ params }: { params: { appointmentId: string } }) => {
 	return (
 		<main className="flex flex-col mb-10 mt-20">
 			<MaxWidthWrapper className="flex-1 h-full flex flex-col gap-10 w-full justify-center items-center">
-				<div className="rounded-full flex justify-center items-center border-4 border-primary p-4">
-					<Check className="text-primary w-8 h-8" />
-				</div>
+				<Image src={successGif} height={300} width={280} alt="success" />
 				<h2 className="font-bold text-2xl sm:text-4xl text-center max-w-[25ch]">
 					Your <span className="text-primary">appointment request</span> has
 					been successfully submitted!
@@ -49,6 +56,13 @@ const page = async ({ params }: { params: { appointmentId: string } }) => {
 						<p className="text-zinc-400 text-sm">{formattedDate}</p>{" "}
 					</span>
 				</div>
+				<Link
+					href={`/${session.user.id}/set-appointment`}
+					className={buttonVariants({ size: "sm" })}
+				>
+					New Appointment
+				</Link>
+				<span className="text-zinc-400 text-sm">&#169;2024 patientrest</span>
 			</MaxWidthWrapper>
 		</main>
 	);
