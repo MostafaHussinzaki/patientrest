@@ -18,7 +18,10 @@ export const authOptions: AuthOptions = {
 			},
 			async authorize(credentials, req) {
 				// TODO: changed when deployed
-				if (req?.headers?.referer === "http://localhost:3000/auth/sign-in") {
+				if (
+					req?.headers?.referer ===
+					"https://patientrest-kea3apm0l-mostafahussinzakis-projects.vercel.app//auth/sign-in"
+				) {
 					// get the user from database
 					const dbUser = await db.patient.findUnique({
 						where: {
