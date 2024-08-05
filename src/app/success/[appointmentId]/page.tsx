@@ -53,7 +53,7 @@ const page = async ({ params }: { params: { appointmentId: string } }) => {
 						{appointmentData?.doctor}
 					</span>
 					<span className="flex items-center">
-						<Calendar className="text-zinc-400 h-4 w-4 mr-2" />{" "}
+						<Calendar className="text-zinc-400 h-4 w-4 mr-2" />
 						<p className="text-zinc-400 text-sm">{formattedDate}</p>{" "}
 					</span>
 				</div>
