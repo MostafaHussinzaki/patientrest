@@ -40,7 +40,7 @@ export async function POST(req: Request) {
 					cancelReason: body.cancelReason,
 				},
 			},
-			{ status: 201 }
+			{ status: 200 }
 		);
 	} catch (err: any) {
 		return NextResponse.json(
