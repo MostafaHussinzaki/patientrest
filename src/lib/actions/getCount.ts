@@ -1,30 +1,34 @@
 import { db } from "@/db";
+import { Appointment } from "@prisma/client";
 
 export const revalidate = 10;
 
 export async function getCount() {
 	try {
-		const scheduledAppointments = await db.appointment.findMany({
-			where: {
-				status: "SCHEDULED",
-			},
-		});
-		const pendingAppointments = await db.appointment.findMany({
-			where: {
-				status: "PENDING",
-			},
-		});
-		const cancelledAppointments = await db.appointment.findMany({
-			where: {
-				status: "CANCELED",
-			},
-		});
+		const appointments = await db.appointment.findMany({});
 
-		const counts = {
-			scheduled: scheduledAppointments.length,
-			pending: pendingAppointments.length,
-			cancelled: cancelledAppointments.length,
+		let initialCounts = {
+			scheduled: 0,
+			pending: 0,
+			cancelled: 0,
 		};
+		const counts = (appointments as Appointment[]).reduce(
+			(acc, appointment) => {
+				switch (appointment.status) {
+					case "SCHEDULED":
+						acc.scheduled++;
+						break;
+					case "PENDING":
+						acc.pending++;
+						break;
+					case "CANCELED":
+						acc.cancelled++;
+						break;
+				}
+				return acc;
+			},
+			initialCounts
+		);
 
 		return { appointmentsCount: counts };
 	} catch (err: any) {
