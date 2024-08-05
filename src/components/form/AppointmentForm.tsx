@@ -39,6 +39,7 @@ const AppointmentForm = ({ userId }: { userId: string }) => {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({ ...data, userId }),
+				cache: "no-cache",
 			});
 			if (!res.ok) {
 				form.setError("root", {

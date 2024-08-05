@@ -1,4 +1,5 @@
 import { db } from "@/db";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -15,6 +16,7 @@ export async function POST(req: Request) {
 				status: "PENDING",
 			},
 		});
+		revalidatePath("/admin", "layout");
 		return NextResponse.json(
 			{ appointment: { id: dbAppointment.appointmentId } },
 			{ status: 201 }

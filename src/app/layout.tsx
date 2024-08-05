@@ -26,7 +26,7 @@ export default function RootLayout({
 			<Providers>
 				<body
 					className={cn(
-						"min-g-screen dark font-[var(--font-sans)]",
+						"min-h-screen dark font-[var(--font-sans)]",
 						jakarta.className
 					)}
 				>

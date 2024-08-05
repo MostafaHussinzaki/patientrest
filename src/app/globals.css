@@ -98,12 +98,25 @@
 	);
 }
 
+.bgImage-appointments {
+	background-image: url("../assets/appointments-bg.png");
+	@apply bg-cover;
+}
+.bgImage-pending {
+	background-image: url("../assets/pending-bg.png");
+	@apply bg-cover;
+}
+.bgImage-cancelled {
+	background-image: url("../assets/cancelled-bg.png");
+	@apply bg-cover;
+}
+
 /* react date picker styling */
 .date-picker {
 	@apply !overflow-hidden !border-transparent !w-full placeholder:!text-zinc-400  !h-11 !text-lg !rounded-md !px-3 !outline-none;
 }
-
-.react-datepicker-wrapper.date-picker {
+.react-datepicker-wrapper
+.date-picker {
 	display: flex;
 	align-items: center;
 }
@@ -162,3 +175,15 @@
 	display: flex !important;
 	align-items: center !important;
 }
+
+/* SHADCN OTP styling*/
+
+.shad-otp {
+	@apply !w-full !flex !justify-between;
+}
+
+.shad-otp-slot {
+	@apply !text-4xl font-bold justify-center flex border border-zinc-500 rounded-lg size-16 gap-4;
+}
+
+/*  */

@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export const dateFormatter = (date) =>
+export const dateFormatter = (date: Date) =>
 	new Intl.DateTimeFormat("en-US", {
 		hour: "numeric",
 		day: "numeric",

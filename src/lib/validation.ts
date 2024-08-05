@@ -119,3 +119,19 @@ export const createAppointmentSchema = z.object({
 		.max(500, "Reason must be at most 500 characters"),
 	note: z.string().optional(),
 });
+
+export const appointmentSchaduleSchema = z.object({
+	doctor: z.string(),
+	reason: z
+		.string()
+		.min(2, "Reason must be at least 2 characters")
+		.max(500, "Reason must be at most 500 characters"),
+	schedule: z.coerce.date(),
+});
+
+export const appointmentCancelSchema = z.object({
+	cancelReason: z
+		.string()
+		.min(2, { message: "Must give and reasonable reason" })
+		.max(500, { message: "Must not exceed 500 character" }),
+});
