@@ -25,7 +25,7 @@ export default function Home() {
 					doctor now
 				</div>
 				<p className=" mt-6 max-w-prose text-zinc-400 sm:text-lg">
-					don't wait for your doctor for hours to set an appointment,
+					don&apos;t wait for your doctor for hours to set an appointment,
 					Patientrest allow you to set your appointment from your House!
 				</p>
 				<Link
