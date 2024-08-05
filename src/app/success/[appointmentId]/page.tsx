@@ -29,6 +29,7 @@ const page = async ({ params }: { params: { appointmentId: string } }) => {
 		},
 	});
 
+	// @ts-ignore
 	const formattedDate = dateFormatter(appointmentData?.Date);
 
 	if (!appointmentData) {
@@ -44,7 +45,7 @@ const page = async ({ params }: { params: { appointmentId: string } }) => {
 					been successfully submitted!
 				</h2>
 				<p className="text-zinc-400 pb-10 border-b border-b-zinc-700 w-full text-center">
-					We'll be in touch shortly to confirm.
+					We&apos;ll be in touch shortly to confirm.
 				</p>
 				<div className="flex flex-col sm:flex-row gap-3 items-center pb-10 border-b border-b-zinc-700 w-full justify-center">
 					<h3>Requested appointment details: </h3>
