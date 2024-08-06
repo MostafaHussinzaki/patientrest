@@ -95,6 +95,12 @@ export const AppointmentCancelForm = ({
 						</InputField>
 					)}
 				/>
+
+				{form.formState.errors.root && (
+					<p className="text-[12px] text-red-400 mt-2">
+						{form.formState.errors.root.message}
+					</p>
+				)}
 				<Button type="submit" variant="destructive" disabled={isLoading}>
 					{isLoading ? "Submtting..." : "Submit"}
 				</Button>

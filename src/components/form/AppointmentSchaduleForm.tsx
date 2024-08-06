@@ -152,6 +152,11 @@ export const AppointmentSchaduleForm = ({
 						);
 					}}
 				/>
+				{form.formState.errors.root && (
+					<p className="text-[12px] text-red-400 mt-2">
+						{form.formState.errors.root.message}
+					</p>
+				)}
 				<Button type="submit" disabled={isLoading}>
 					{isLoading ? "Submitting..." : "Submit"}
 				</Button>
