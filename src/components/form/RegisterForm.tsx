@@ -84,7 +84,8 @@ const RegisterForm = () => {
 			};
 			await signIn("credentials", {
 				...formatDataUser,
-				callbackUrl: `http://localhost:3000/${data.user.id}/set-appointment`,
+				// change when deployment
+				callbackUrl: `https://patientrest.vercel.app/${data.user.id}/set-appointment`,
 			});
 		},
 	});
