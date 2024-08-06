@@ -13,7 +13,16 @@ const AuthButton = () => {
 	return (
 		<>
 			{session ? (
-				""
+				<Link
+					href={`/${session.user.id}/set-appointment`}
+					className={buttonVariants({
+						variant: "ghost",
+						size: "sm",
+						className: "flex gap-2 text-[0.775rem] md:text-sm",
+					})}
+				>
+					New Appointment  <ArrowRight className="w-4 h-4" />
+				</Link>
 			) : (
 				<Link
 					href="/auth/sign-in"
