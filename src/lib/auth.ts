@@ -20,7 +20,7 @@ export const authOptions: AuthOptions = {
 				// TODO: changed when deployed
 				if (
 					req?.headers?.referer ===
-					"https://patientrest-kea3apm0l-mostafahussinzakis-projects.vercel.app//auth/sign-in"
+					"https://patientrest.vercel.app/auth/sign-in"
 				) {
 					// get the user from database
 					const dbUser = await db.patient.findUnique({
