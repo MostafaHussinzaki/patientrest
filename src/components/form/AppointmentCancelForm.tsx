@@ -43,13 +43,11 @@ export const AppointmentCancelForm = ({
 			});
 
 			if (!res.ok) {
-				if (!res.ok) {
-					form.setError("root", {
-						type: "manual",
-						message: "Something went wrong, try again later",
-					});
-					throw new Error("Something went wrong, try again later");
-				}
+				form.setError("root", {
+					type: "manual",
+					message: "Something went wrong, try again later",
+				});
+				throw new Error("Something went wrong, try again later");
 			}
 
 			const resData = await res.json();
