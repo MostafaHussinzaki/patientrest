@@ -72,7 +72,7 @@ export async function POST(req: Request) {
 		);
 	} catch (err: any) {
 		return NextResponse.json(
-			{ message: err.message },
+			{ message: "Error occured try again later" },
 			{ status: 500 }
 		);
 	}
