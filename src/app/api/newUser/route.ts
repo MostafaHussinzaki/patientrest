@@ -70,9 +70,9 @@ export async function POST(req: Request) {
 			},
 			{ status: 201 }
 		);
-	} catch (err) {
+	} catch (err: any) {
 		return NextResponse.json(
-			{ message: "Something went wrong: Try again later" },
+			{ message: err.message },
 			{ status: 500 }
 		);
 	}
