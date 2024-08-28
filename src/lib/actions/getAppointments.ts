@@ -1,8 +1,20 @@
 import { db } from "@/db";
 
-export async function getAppointments() {
+export async function getAppointments({
+	userId,
+}: {
+	userId: number | undefined;
+}) {
 	try {
-		const appointments = await db.appointment.findMany({
+		let appointments;
+		if (userId) {
+			appointments = await db.appointment.findMany({
+				where: {
+					patientId: userId,
+				},
+			});
+		}
+		appointments = await db.appointment.findMany({
 			orderBy: {
 				appointmentId: "desc",
 			},

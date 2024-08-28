@@ -14,7 +14,8 @@ import AppointmentAction from "../model/AppointmentAction";
 export type Appointments = {
 	patient: Patient;
 } & Appointment;
-export const columns: ColumnDef<Appointments>[] = [
+
+export const adminColumns: ColumnDef<Appointments>[] = [
 	{
 		header: "#",
 		cell: ({ row }) => {
@@ -98,6 +99,61 @@ export const columns: ColumnDef<Appointments>[] = [
 					)}
 				</div>
 			);
+		},
+	},
+];
+
+export const userColumns: ColumnDef<Appointments>[] = [
+	{
+		header: "#",
+		cell: ({ row }) => {
+			return <p className="text-14-medium ">{row.index + 1}</p>;
+		},
+	},
+	{
+		accessorKey: "appointmentId",
+		header: "Appointment ID",
+		cell: ({ row }) => {
+			return <p className="text-14-medium ">{row.original.appointmentId}</p>;
+		},
+	},
+	{
+		accessorKey: "Date",
+		header: "Date",
+		cell: ({ row }) => {
+			return (
+				<p className="text-14-medium ">{dateFormatter(row.original.Date)}</p>
+			);
+		},
+	},
+	{
+		accessorKey: "doctor",
+		header: "Doctor",
+		cell: ({ row }) => {
+			const data = row.original;
+			const doctor = DOCTORS.find((doctor) => doctor.name === data.doctor);
+			const names = doctor?.name.split(" ");
+			//@ts-ignore
+			const fallback = `${names[0][0]} ${names[1][0]}`;
+
+			return (
+				<div className="w-full flex items-center justify-start gap-2">
+					<Avatar>
+						<AvatarImage src={doctor?.img} />
+						<AvatarFallback>{fallback.toUpperCase()}</AvatarFallback>
+					</Avatar>
+					<h3 className="text-white font-medium">Dr. {doctor?.name}</h3>
+				</div>
+			);
+		},
+	},
+	{
+		accessorKey: "status",
+		header: "Status",
+		cell: ({ row }) => {
+			const data = row.original;
+
+			return <BadgeStatus status={data.status} />;
 		},
 	},
 ];
